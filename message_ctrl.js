@@ -1,21 +1,19 @@
 var aMsg = require('./model/message_')
+var allMsgs = aMsg.find({});
+
 
 //Creating messages function
 
-exports.createMsg = async(req, res) =>{ 
-     // validate request
-  if (!req.body) {
-    res.status(400).send({ message: "Content can not be emtpy!" });
-    return;
-  }
 
-     console.log("section: " + req.body.sec_n);
-        var sectionName='Paiting';
+
+exports.create_msg = async(req, res) =>{ 
+      console.log("section: " + req.body.sec_n);
+        var sectionName='Painting';
         
         if(req.body.sec_n == 1){
             sectionName = 'Plumbing';
         }else if(req.body.sec_n == 2){
-            sectionName = 'Eletric';
+            sectionName = 'Electric';
         }else if(req.body.sec_n == 3){
             sectionName = 'Heating';
         }
@@ -30,7 +28,8 @@ exports.createMsg = async(req, res) =>{
             
         });
     try{
-        await newMessage.save();        
+        await newMessage.save();
+        console.log(newMessage)        
     }catch(error){
         console.log("There was an error with your messsage");
         console.log(error);      
@@ -40,19 +39,19 @@ exports.createMsg = async(req, res) =>{
 };
 
 exports.getMessages = async(req,res)=>{
-   let allMSG= []
+   let allMsgs= [];
    try{
-     allMSG = await aMSG.find();
+    allMsgs = await aMsg.find()
 
-    res.render('/staff',{msg:allMSG});
+    res.render('staff',{msgs:allMsgs})
    }catch{
-    console.log("Something happend at getting products");
-    allMSG=[];
-      res.render('/staff',{msg:allMSG});
-   };
+    console.log("Something happend at getting products")
+       res.render('staff',{msgs:allMsgs})
+   }
     
-   //rendering index page, sending the fetched products
-};
+  };
+
+
 
 //delete function
 exports.deleteMsg = async(req, res)=> {

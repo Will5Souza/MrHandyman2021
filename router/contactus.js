@@ -5,14 +5,15 @@
  */
 const express = require('express')
 const router = express.Router()
-const app = express()
-var msgCtrl = require('../controller');
-const services = require('../server/services');
+const app = express();
+var msgCtrl = require('../message_ctrl');
 
 
 
 
-router.get('/addmsg', services.add_msg);
-router.post('/api/msg', controller.create);
+
+app.post('/new', msgCtrl.getWorld)
+
+
 module.exports = router
 

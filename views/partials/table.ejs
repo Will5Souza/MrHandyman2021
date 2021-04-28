@@ -1,16 +1,18 @@
 
-<% for(var i = 0; i < msgs.length; i++) { %>
+<% if(records.length > 0) { %>
+    <% records.forEach(function(msgs){ %>
 <tr>
-    <td><%= i + 1 %></td>
-    <td><%= msgs[i].section %></td>
-    <td><%= msgs[i].name %></td>
-    <td><%= msgs[i].phone %></td>
-    <td><%= msgs[i].area %></td>
-    <td><%= msgs[i].message %></td>
+    <td><%= msgs.section %></td>
+    <td><%= msgs.name %></td>
+    <td><%= msgs.phone %></td>
+    <td><%= msgs.area %></td>
+    <td><%= msgs.message %></td>
+    <% })} else { %>
     <td>
-        <a class="btn border-shadow delete" data-id=<%= msgs[i]._id%> >
+        <a class="btn border-shadow delete" data-id=<%= msgs._id%> >
             <span class="text-gradient"><i class="fas fa-times"></i></span>
         </a>
     </td>
 </tr>
+<tr><td>colspan="6">No records found</td></tr>
 <% } %>

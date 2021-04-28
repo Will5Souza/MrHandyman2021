@@ -1,0 +1,59 @@
+<!--THE MAIN STRUCTURE OF THE CODE WAS TAKING FROM https://github.com/mikhail-cct/xml-bootcamp -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../views/partials/head.ejs'); %>
+    
+</head>
+
+<body>
+    <header> 
+         <%- include('../views/partials/header.ejs'); %>
+          
+           </header>
+    <!-- Navigation -->
+       <span class="sr-only">(current)</span>
+
+  
+    <!-- Page Content -->
+    <div class="container">
+     <div class="row justify-content-md-center">
+        <div class="col-md-10">
+            <h1 class="heading"><strong>Quick </strong> Contact <span></span></h1>
+            <p>Please contact us by leaving a message below. In case of urgency please do not hesitate to call our emergency 
+                number <b>089 231-7456</b>. 
+                We operate in business time, Monday to Friday and weekends from 9 to 1pm. Thank you for choosing us.</p>
+            <div class="panel-group">
+                <form action="/new" method="POST">
+                    <div class="form-group">
+                        <select class="form-control" id="mylabel" name="sec_n">
+                            <option value="0">Painting</option>
+                            <option value="1">Plumber</option>
+                            <option value="2">Electric</option>
+                            <option value="3">Heating</option>
+                        </select>
+                            <input class="form-control mt-3" type="text" name="name" placeholder="Name" required>
+                            <input class="form-control mt-3 bfh-phone" name="phone" type="text" placeholder="Mobile Phone" maxlength="10" required>
+                            <input class="form-control mt-3" type="text" name="location" placeholder="Area" required>
+                            <input class="form-control mt-3" type="text" name="message" placeholder="Message" required>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Send</button>
+                  </div> 
+
+                 </div>
+          </form>
+                 
+                
+               
+                </div>
+                               
+   </div>
+         </body>                                    
+        <footer>
+       <%- include('../views/partials/footer.ejs'); %>
+        
+   </footer>
+  
+     
+
+</html>

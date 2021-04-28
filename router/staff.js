@@ -1,12 +1,35 @@
-/* global MessageSchema */
+const mongoose = require('mongoose')
+const express = require('express');
+const router = express.Router();
+const app = express();
+var aMsg = require('./model/message_')
 
-const express = require('express')
-const mongoose = require ('mongoose');
-const router = express.Router()
-var msgCtrl = require('../controller');
-const services = require('../server/services');
 
-router.get('/', services.staffRoutes);
-router.get('/api/msg', msgtrl.find);
+router.get("/staff", (req, res, next) => {
+    aMsg.find({})
+        .exec()
+        .then(docs => {
+            res.status(200).json({
+                docs
+            });
+        })
+        .catch(err => {
+            console.log(err)
+        });
+});
 
-module.exports = router;
+router.post("/delete", (req, res, next) => {
+    const rid = req.body.id;
+
+    aMsg.findById(rid)
+        .exec()
+        .then(docs => {
+            docs.remove();
+            res.status(200).json({
+                deleted:true
+            });
+        })
+        .catch(err => {
+            console.log(err)
+        });
+});
